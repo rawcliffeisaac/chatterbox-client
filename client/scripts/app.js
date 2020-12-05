@@ -16,8 +16,9 @@ var App = {
     App.fetch(App.stopSpinner);
     setInterval(function () {
       $('#chats').html('');
+      $('#rooms select').html('');
       App.fetch();
-    }, 5000);
+    }, 10000);
   },
 
   fetch: function(callback = ()=>{}) {
