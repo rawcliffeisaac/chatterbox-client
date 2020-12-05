@@ -8,6 +8,9 @@ var Messages = {
       for (let k = results.length - 1; k >= 0; k--) {
         MessagesView.renderMessage(results[k]);
         Messages.storage.unshift(results[k]);
+        if (!Rooms.doesRoomAlreadyExist(results[k].roomname)) {
+          Rooms.addRoomToStorage(results[k].roomname);
+        }
       }
     } else {
       for (let i = 0; i < results.length; i++) {
@@ -20,6 +23,9 @@ var Messages = {
       for (let j = 0; j < Messages.tempMemory.length; j++) {
         MessagesView.renderMessage(Messages.tempMemory[j]);
         Messages.storage.unshift(Messages.tempMemory);
+        if (!Rooms.doesRoomAlreadyExist(Messages.tempMemory[j].roomname)) {
+          Rooms.addRoomToStorage(Messages.tempMemory[j].roomname);
+        }
       }
       Messages.tempMemory = [];
       // Messages.storage = Messages.tempMemory.concat(Messages.storage);
