@@ -14,14 +14,18 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
-
+    setInterval(function () {
+      $('#chats').html('');
+      App.fetch();
+    }, 5000);
   },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
-
+      // do
+      Messages.refreshPage(data.results);
       callback();
     });
   },
