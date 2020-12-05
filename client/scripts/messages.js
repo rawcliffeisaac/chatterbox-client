@@ -1,16 +1,38 @@
 var Messages = {
-  // create a storage object
+  storage: [],
+  tempMemory: [],
 
-  refreshPage: function(results) {
-    for (let i = 0; i < results.length; i++) {
-      // if (results[i].roomname === $('#rooms select').val()) {
-      MessagesView.renderMessage(results[i]);
-      // }
-      if (results[i].roomname) {
-        RoomsView.rooms[results[i].roomname] = null;
+  checkData: function(results) {
+
+    if (!Messages.storage.length) {
+      for (let k = results.length - 1; k >= 0; k--) {
+        MessagesView.renderMessage(results[k]);
+        Messages.storage.unshift(results[k]);
       }
+    } else {
+      for (let i = 0; i < results.length; i++) {
+        if (results[i] === Messages.storage[0]) {
+          break;
+        } else {
+          Messages.tempMemory.unshift(results[i]);
+        }
+      }
+      for (let j = 0; j < Messages.tempMemory.length; j++) {
+        MessagesView.renderMessage(Messages.tempMemory[j]);
+        Messages.storage.unshift(Messages.tempMemory);
+      }
+      Messages.tempMemory = [];
+      // Messages.storage = Messages.tempMemory.concat(Messages.storage);
     }
-    RoomsView.renderRoom();
+    // loop backwards until last item of storage is found
+    // if (results[i].roomname === $('#rooms select').val()) {
+    //   MessagesView.renderMessage(results[i]);
+    //   // }
+    //   if (results[i].roomname) {
+    //     RoomsView.rooms[results[i].roomname] = null;
+    //   }
+    // }
+    // RoomsView.renderRoom();
   }
 };
 

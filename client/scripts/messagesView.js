@@ -8,7 +8,7 @@ var MessagesView = {
   renderMessage: function(innerObj) {
     if (innerObj.username && innerObj.text) {
       var message = MessageView.render(innerObj);
-      MessagesView.$chats.append(message);
+      MessagesView.$chats.prepend(message);
     }
   }
 

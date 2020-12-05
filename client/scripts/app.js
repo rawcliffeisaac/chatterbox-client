@@ -15,8 +15,8 @@ var App = {
     App.startSpinner();
     App.fetch(App.stopSpinner);
     setInterval(function () {
-      $('#chats').html('');
-      $('#rooms select').html('');
+      // $('#chats').html('');
+      // $('#rooms select').html('');
       App.fetch();
     }, 10000);
   },
@@ -26,7 +26,7 @@ var App = {
       // examine the response from the server request:
       console.log(data);
       // do
-      Messages.refreshPage(data.results);
+      Messages.checkData(data.results);
       callback();
     });
   },
