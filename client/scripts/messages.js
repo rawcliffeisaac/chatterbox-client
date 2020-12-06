@@ -14,7 +14,7 @@ var Messages = {
       }
     } else {
       for (let i = 0; i < results.length; i++) {
-        if (results[i] === Messages.storage[0]) {
+        if (results[i].objectId === Messages.storage[0].objectId) {
           break;
         } else {
           Messages.tempMemory.unshift(results[i]);
@@ -22,7 +22,7 @@ var Messages = {
       }
       for (let j = 0; j < Messages.tempMemory.length; j++) {
         MessagesView.renderMessage(Messages.tempMemory[j]);
-        Messages.storage.unshift(Messages.tempMemory);
+        Messages.storage.unshift(Messages.tempMemory[j]);
         if (!Rooms.doesRoomAlreadyExist(Messages.tempMemory[j].roomname)) {
           Rooms.addRoomToStorage(Messages.tempMemory[j].roomname);
         }
